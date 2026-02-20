@@ -3,11 +3,8 @@ import Image from "next/image"
 import { useState } from "react";
 import { motion } from "motion/react"
 
-type themeToggle = {
-  isDarkMode: boolean,
-}
 
-function Contact({ isDarkMode }: themeToggle) {
+function Contact() {
   const [result, setResult] = useState("");
 
   if (process.env.NEXT_PUBLIC_FORM_ACCESS_KEY === undefined) {
