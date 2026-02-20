@@ -1,24 +1,52 @@
 import { assets, workData } from '@/assets/assets'
 import Image from 'next/image'
+import { motion } from "motion/react"
 
 type themeToggle = {
   isDarkMode: boolean,
 }
 
 
-function Work({isDarkMode} : themeToggle) {
+function Work({ isDarkMode }: themeToggle) {
   return (
-    <div id='work' className='w-full px-[12%] py-10 scroll-mt-20'>
-      <h4 className='text-center mb-2 text-lg font-ovo'>My portfolio</h4>
-      <h2 className='text-center text-5xl font-ovo'>My latest work</h2>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      id='work' className='w-full px-[12%] py-10 scroll-mt-20'>
 
-      <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo">
+      <motion.h4
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
+        className='text-center mb-2 text-lg font-ovo'
+      >
+        My portfolio
+      </motion.h4>
+
+      <motion.h2
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.5 }}
+        className='text-center text-5xl font-ovo'>My latest work</motion.h2>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
+        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo">
         welcome to my web development portfolio! Explore a collection of projects showcasing my expertise in front-end development.
-      </p>
+      </motion.p>
 
-      <div className='grid grid-cols-auto my-10 gap-5 dark:text-black'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.9, delay: 0.6 }}
+        className='grid grid-cols-auto my-10 gap-5 dark:text-black'>
         {workData.map((projects, index) => (
-          <div
+          <motion.div
+            whileHover={{ scale: 1.05, }}
+            transition={{ duration: 0.3 }}
             key={index}
             className='aspect-square bg-no-repeat bg-cover rounded-lg relative cursor-pointer group'
             style={{ backgroundImage: `url(${projects.bgImage})` }}
@@ -35,15 +63,19 @@ function Work({isDarkMode} : themeToggle) {
               </div>
 
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <a href="" className='w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-light-hover duration-500 dark:text-white dark:border-white dark:hover:bg-dark-hover'>
+      <motion.a
+        initial={{  opacity: 0 }}
+        whileInView={{  opacity: 1 }}
+        transition={{ duration: 1.1, delay: 0.5 }}
+        href="" className='w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-light-hover duration-500 dark:text-white dark:border-white dark:hover:bg-dark-hover'>
         Show more
         <Image src={isDarkMode ? assets.right_arrow_bold_dark : assets.right_arrow_bold} alt='right arrow' className='w-4' />
-      </a>
-    </div>
+      </motion.a>
+    </motion.div>
   )
 }
 
